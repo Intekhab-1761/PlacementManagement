@@ -13,7 +13,7 @@ public class Client {
 		StudentService service = new StudentServiceImpl();
 		Student student = new Student();
 
-		student.setId(101);
+		student.setId(105);
 		student.setName("Intekhab");
 		student.setCollege("HKBK");
 		student.setRoll(42);
@@ -35,7 +35,7 @@ public class Client {
 		System.out.println("Certificate:" + student.getCertificate());
 		System.out.println("HallTicketNo:" + student.getHallTicketNo());
 
-		List<Student> list = (List<Student>) service.searchStudentByHallTicket(101);
+		//List<Student> list = (List<Student>) service.searchStudentByHallTicket(101);
 		// student.setName("Md Intekhab Alam");
 
 		System.out.println("End of program/Life cycle completed...");
