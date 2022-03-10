@@ -1,20 +1,20 @@
 package com.cg.studententities;
 
-import java.io.Serializable;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQuery;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
-@NamedQuery(name = "Student.searchStudentByhallTicket", query = "SELECT s FROM Student s WHERE hallTicketNo=:ticketno")
-public class Student implements Serializable {
+@Table(name="student")
+public class Student  {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String name;
 	private String college;
@@ -22,8 +22,22 @@ public class Student implements Serializable {
 	private String qualification;
 	private String course;
 	private int year;
-	private String Certificate;
+
 	private int hallTicketNo;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "certificate")
+	private Certificate certificate;
+
+	
+	
+	public Certificate getCertificate() {
+		return certificate;
+	}
+
+	public void setCertificate(Certificate certificate) {
+		this.certificate = certificate;
+	}
 
 	public int getId() {
 		return id;
@@ -79,14 +93,6 @@ public class Student implements Serializable {
 
 	public void setYear(int year) {
 		this.year = year;
-	}
-
-	public String getCertificate() {
-		return Certificate;
-	}
-
-	public void setCertificate(String certificate) {
-		Certificate = certificate;
 	}
 
 	public int getHallTicketNo() {
