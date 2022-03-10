@@ -1,9 +1,13 @@
 package com.cg.studentclient;
 
+import java.time.LocalDate;
+
 import com.cg.studententities.Certificate;
+import com.cg.studententities.College;
+import com.cg.studententities.Placement;
 import com.cg.studententities.Student;
-import com.cg.studentservice.CertificateService;
-import com.cg.studentservice.CertificateServiceImp;
+import com.cg.studentservice.PlacementService;
+import com.cg.studentservice.PlacementServiceImp;
 import com.cg.studentservice.StudentService;
 import com.cg.studentservice.StudentServiceImpl;
 
@@ -12,12 +16,12 @@ public class Client {
 	public static void main(String[] args) {
 
 		StudentService service = new StudentServiceImpl();
-		CertificateService cservice=new CertificateServiceImp();
+		PlacementService pservice=new PlacementServiceImp();
 		
 		Student student = new Student();
 				
 		student.setName("Intekhab");
-		student.setCollege("HKBK");
+		
 		student.setRoll(42);
 		student.setQualification("B.E");
 		student.setCourse("Engineering");
@@ -29,12 +33,28 @@ public class Client {
 		certificate.setCollege("HKBK");
 		certificate.setYear(2022);
 		
+		College college = new College();
+		
+		college.setCollegeAdmin("James");
+		college.setCollegeName("HKBK");
+		college.setLocation("Bangalore");
+		
+		Placement placement=new Placement();
+		
+		placement.setName("dsfjsdo");
+		placement.setDate(LocalDate.now());
+		placement.setQualification("MSC");
+		placement.setYear(2022);
+		
+		student.setCollege(college);
+		placement.setCollege(college);
 		
 		//certificate.setStudent(student);
 		student.setCertificate(certificate);
 		
 		//cservice.addCertificate(certificate);
 		service.addStudent(student);
+		pservice.addPLacement(placement);
 
 		
 		/*
