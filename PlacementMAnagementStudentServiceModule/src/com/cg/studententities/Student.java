@@ -7,15 +7,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="student")
-public class Student  {
+@Table(name = "student")
+@NamedQuery(name = "searchStudentByhallTicket", query = "Select student From Student student Where student.hallTicketNo=:ticketno")
+public class Student {
 
-	@Id@GeneratedValue(strategy=GenerationType.IDENTITY)
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
 	private int roll;
@@ -28,14 +30,11 @@ public class Student  {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "certificate")
 	private Certificate certificate;
-	
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "college")
 	private College college;
-	
-	
-	
+
 	public void setCollege(College college) {
 		this.college = college;
 	}
@@ -67,7 +66,6 @@ public class Student  {
 	public College getCollege() {
 		return college;
 	}
-
 
 	public int getRoll() {
 		return roll;
